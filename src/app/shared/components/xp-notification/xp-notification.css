@@ -1,0 +1,87 @@
+:host {
+  position: fixed;
+  right: 10px;
+  bottom: calc(var(--xp-taskbar-height) + 8px);
+  z-index: 48;
+  display: block;
+  width: min(320px, calc(100% - 20px));
+  pointer-events: none;
+}
+
+.xp-toasts {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.xp-toast {
+  position: relative;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  padding: 8px;
+  border: 1px solid #000000;
+  background: #ffffe1;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.35);
+  pointer-events: auto;
+}
+
+.xp-toast::after {
+  content: '';
+  position: absolute;
+  right: 22px;
+  bottom: -8px;
+  border-top: 8px solid #ffffe1;
+  border-right: 8px solid transparent;
+  border-left: 8px solid transparent;
+  filter: drop-shadow(0 1px 0 #000000);
+}
+
+.xp-toast strong,
+.xp-toast p {
+  margin: 0;
+  font-size: 11px;
+}
+
+.xp-toast p {
+  margin-top: 2px;
+}
+
+.xp-toast button {
+  min-width: 0;
+  min-height: 0;
+  margin-left: auto;
+  padding: 0 4px;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  color: #000000;
+  font-size: 14px;
+  text-shadow: none;
+  cursor: default;
+}
+
+.xp-toast-mark {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  border: 1px solid #0831d9;
+  border-radius: 2px;
+  background: #245edc;
+}
+
+.is-success .xp-toast-mark {
+  border-color: #1d5c0c;
+  background: #3c9a22;
+}
+
+.is-warning .xp-toast-mark {
+  border-color: #8a6a00;
+  background: #f0c14b;
+}
+
+.is-error .xp-toast-mark {
+  border-color: #8d1c10;
+  background: #e04b32;
+}

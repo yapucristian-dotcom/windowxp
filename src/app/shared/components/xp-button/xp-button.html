@@ -1,0 +1,9 @@
+<button
+  [type]="type()"
+  class="xp-button"
+  [class.is-default]="isDefault()"
+  [class.is-compact]="compact()"
+  [disabled]="disabled()"
+>
+  <ng-content />
+</button>

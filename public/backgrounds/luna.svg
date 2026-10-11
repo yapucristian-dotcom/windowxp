@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a5caf"/>
+      <stop offset="42%" stop-color="#4aa4e2"/>
+      <stop offset="68%" stop-color="#c5ecfb"/>
+      <stop offset="82%" stop-color="#d9f3cf"/>
+    </linearGradient>
+    <linearGradient id="hill-far" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#8dce62"/>
+      <stop offset="100%" stop-color="#3f8d34"/>
+    </linearGradient>
+    <linearGradient id="hill-mid" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7ec24e"/>
+      <stop offset="100%" stop-color="#2f7a28"/>
+    </linearGradient>
+    <linearGradient id="hill-near" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#69b244"/>
+      <stop offset="100%" stop-color="#24661f"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fff7d6" stop-opacity="0.9"/>
+      <stop offset="55%" stop-color="#fff1b8" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#fff1b8" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#sky)"/>
+  <ellipse cx="1180" cy="230" rx="260" ry="140" fill="url(#sun)"/>
+  <g fill="#ffffff">
+    <ellipse cx="250" cy="150" rx="78" ry="24" opacity="0.9"/>
+    <ellipse cx="310" cy="138" rx="64" ry="28" opacity="0.92"/>
+    <ellipse cx="200" cy="142" rx="48" ry="18" opacity="0.85"/>
+    <ellipse cx="860" cy="110" rx="100" ry="22" opacity="0.8"/>
+    <ellipse cx="940" cy="98" rx="62" ry="20" opacity="0.88"/>
+    <ellipse cx="1420" cy="180" rx="70" ry="18" opacity="0.75"/>
+    <ellipse cx="1360" cy="168" rx="40" ry="14" opacity="0.7"/>
+  </g>
+  <path d="M0 520C180 470 320 600 560 540C820 474 980 590 1240 520C1400 476 1500 530 1600 500V900H0Z" fill="url(#hill-far)"/>
+  <path d="M0 640C220 560 420 720 760 640C1040 574 1220 730 1600 620V900H0Z" fill="url(#hill-mid)"/>
+  <path d="M0 760C260 690 520 840 900 750C1180 690 1380 820 1600 740V900H0Z" fill="url(#hill-near)"/>
+</svg>

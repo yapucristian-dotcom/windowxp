@@ -1,0 +1,49 @@
+<div class="xp-section">
+  @if (loading()) {
+    <app-xp-loading />
+  } @else {
+    <form class="xp-form" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+      <fieldset [disabled]="submitting()">
+        <legend>{{ editing() ? 'Editar usuario' : 'Nuevo usuario' }}</legend>
+        <label class="xp-field">
+          Usuario
+          <input name="usuario" type="text" formControlName="usuario" autocomplete="off" />
+          @if (invalid('usuario')) {
+            <span class="xp-error">{{ message('usuario') }}</span>
+          }
+        </label>
+        <label class="xp-field">
+          Nombre
+          <input name="nombre" type="text" formControlName="nombre" />
+          @if (invalid('nombre')) {
+            <span class="xp-error">{{ message('nombre') }}</span>
+          }
+        </label>
+        <label class="xp-field">
+          Email
+          <input name="email" type="email" formControlName="email" />
+          @if (invalid('email')) {
+            <span class="xp-error">{{ message('email') }}</span>
+          }
+        </label>
+        <label class="xp-field">
+          Estado
+          <select formControlName="estado">
+            <option value="activo">Activo</option>
+            <option value="inactivo">Inactivo</option>
+          </select>
+          @if (invalid('estado')) {
+            <span class="xp-error">{{ message('estado') }}</span>
+          }
+        </label>
+      </fieldset>
+      <div class="xp-form-actions">
+        @if (submitting()) {
+          <app-xp-loading />
+        }
+        <app-xp-button type="submit" [isDefault]="true" [disabled]="submitting()">Aceptar</app-xp-button>
+        <app-xp-button [disabled]="submitting()" (click)="cancel()">Cancelar</app-xp-button>
+      </div>
+    </form>
+  }
+</div>

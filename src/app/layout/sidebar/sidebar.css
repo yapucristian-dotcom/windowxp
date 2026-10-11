@@ -1,0 +1,120 @@
+:host {
+  display: flex;
+  flex: 0 0 196px;
+  width: 196px;
+  min-height: 0;
+  overflow: auto;
+  background: linear-gradient(180deg, #7ea4e8 0%, #5d78d6 100%);
+}
+
+.xp-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  padding: 8px;
+}
+
+.xp-task-group {
+  overflow: hidden;
+  border-radius: 6px 6px 4px 4px;
+  background: #ffffff;
+  box-shadow: 0 1px 2px rgba(0, 30, 80, 0.18);
+}
+
+.xp-group-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  padding: 6px 8px;
+  border: 0;
+  border-bottom: 1px solid #c5d4ef;
+  border-radius: 0;
+  background: linear-gradient(180deg, #ffffff 0%, #e3eefb 100%);
+  box-shadow: none;
+  color: #1a3c8b;
+  font-family: var(--xp-font);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  text-align: left;
+  text-shadow: none;
+  cursor: default;
+}
+
+.xp-chevron {
+  width: 0;
+  height: 0;
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+  border-top: 5px solid #1a3c8b;
+}
+
+.xp-chevron.is-collapsed {
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 4px solid transparent;
+  border-left: 5px solid #1a3c8b;
+}
+
+.xp-task-links {
+  display: flex;
+  flex-direction: column;
+  padding: 4px 0 6px;
+}
+
+.xp-task-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  padding: 4px 10px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: #003399;
+  font-family: var(--xp-font);
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  text-align: left;
+  text-decoration: underline;
+  text-shadow: none;
+  text-underline-offset: 2px;
+  cursor: default;
+}
+
+.xp-task-link:hover,
+.xp-task-link:focus-visible {
+  background: #e7f0fc;
+  outline: none;
+}
+
+.xp-task-link.is-active {
+  background: #d6e6fa;
+  font-weight: 700;
+}
+
+@media (max-width: 720px) {
+  :host {
+    flex: 0 0 auto;
+    width: 100%;
+    max-height: 210px;
+  }
+
+  .xp-sidebar {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .xp-task-group {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+}

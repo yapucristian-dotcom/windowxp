@@ -25,7 +25,9 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "node_modules/98.css/dist/98.css",
+              "src/styles.css",
+              "src/styles/xp-theme.css"
             ]
           },
           "configurations": {

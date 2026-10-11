@@ -1,0 +1,57 @@
+<section id="xp-start-menu" class="xp-start-menu" role="menu" aria-label="Menú Inicio">
+  <header class="xp-start-header">
+    <img src="icons/user.svg" alt="" width="42" height="42" />
+    <strong>{{ auth.sesion()?.nombre ?? 'Administrador' }}</strong>
+  </header>
+
+  <div class="xp-start-columns">
+    <div class="xp-start-left">
+      @for (entry of leftColumn; track entry.id) {
+        <button type="button" class="xp-start-item is-primary" role="menuitem" (click)="onEntry(entry)">
+          <img [src]="entry.icon" alt="" width="32" height="32" />
+          <span class="xp-start-copy">
+            <strong>{{ entry.label }}</strong>
+            @if (entry.detail) {
+              <small>{{ entry.detail }}</small>
+            }
+          </span>
+        </button>
+      }
+      <div class="xp-programs">
+        <button type="button" class="xp-all-programs" (click)="togglePrograms($event)">
+          <span>Todos los programas</span>
+          <span class="xp-programs-arrow" aria-hidden="true"></span>
+        </button>
+        @if (programsOpen()) {
+          <div class="xp-programs-flyout" role="menu">
+            @for (program of programs; track program.id) {
+              <button type="button" class="xp-start-item" role="menuitem" (click)="openProgram(program.id)">
+                <img [src]="program.icon" alt="" width="16" height="16" />
+                <span>{{ program.label }}</span>
+              </button>
+            }
+          </div>
+        }
+      </div>
+    </div>
+    <div class="xp-start-right">
+      @for (entry of rightColumn; track entry.id) {
+        <button type="button" class="xp-start-item" role="menuitem" (click)="onEntry(entry)">
+          <img [src]="entry.icon" alt="" width="24" height="24" />
+          <span>{{ entry.label }}</span>
+        </button>
+      }
+    </div>
+  </div>
+
+  <footer class="xp-start-footer">
+    <button type="button" class="xp-start-footer-button" (click)="logout()">
+      <img src="icons/logoff.svg" alt="" width="22" height="22" />
+      <span>Cerrar sesión</span>
+    </button>
+    <button type="button" class="xp-start-footer-button" (click)="shutdown()">
+      <img src="icons/shutdown.svg" alt="" width="22" height="22" />
+      <span>Apagar</span>
+    </button>
+  </footer>
+</section>

@@ -1,0 +1,12 @@
+<button
+  type="button"
+  class="xp-start-button"
+  [class.is-active]="shell.startMenuOpen()"
+  [attr.aria-expanded]="shell.startMenuOpen()"
+  aria-haspopup="menu"
+  aria-controls="xp-start-menu"
+  (click)="onClick($event)"
+>
+  <img src="icons/start.svg" alt="" width="18" height="18" />
+  <span>Inicio</span>
+</button>

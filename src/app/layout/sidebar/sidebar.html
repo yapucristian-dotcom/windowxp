@@ -1,0 +1,32 @@
+<nav class="xp-sidebar" aria-label="Tareas">
+  @for (group of groups; track group.id) {
+    <section class="xp-task-group">
+      <button type="button" class="xp-group-title" (click)="toggle(group.id)">
+        <span>{{ group.title }}</span>
+        <span class="xp-chevron" [class.is-collapsed]="collapsed()[group.id]"></span>
+      </button>
+      @if (!collapsed()[group.id]) {
+        <div class="xp-task-links">
+          @for (link of group.links; track link.label) {
+            @if (link.route) {
+              <a
+                class="xp-task-link"
+                [routerLink]="link.route"
+                routerLinkActive="is-active"
+                [routerLinkActiveOptions]="{ exact: link.route === '/app/dashboard' }"
+              >
+                <img [src]="link.icon" alt="" width="16" height="16" />
+                <span>{{ link.label }}</span>
+              </a>
+            } @else {
+              <button type="button" class="xp-task-link" (click)="open(link)">
+                <img [src]="link.icon" alt="" width="16" height="16" />
+                <span>{{ link.label }}</span>
+              </button>
+            }
+          }
+        </div>
+      }
+    </section>
+  }
+</nav>

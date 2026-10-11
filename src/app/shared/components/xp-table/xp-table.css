@@ -1,0 +1,9 @@
+:host {
+  display: block;
+}
+
+.xp-table-scroll {
+  overflow: auto;
+  border: 1px solid #aca899;
+  background: #ffffff;
+}

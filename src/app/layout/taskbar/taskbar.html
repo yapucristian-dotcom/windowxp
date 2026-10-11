@@ -1,0 +1,41 @@
+<footer class="xp-taskbar" (click)="shell.closeStartMenu()">
+  <app-start-button />
+  <div class="xp-quick-launch">
+    @for (item of quickLaunch; track item.id) {
+      <button
+        type="button"
+        class="xp-quick-button"
+        [title]="item.label"
+        [attr.aria-label]="item.label"
+        (click)="shell.openTask(item.taskId)"
+      >
+        <img [src]="item.icon" alt="" width="16" height="16" />
+      </button>
+    }
+  </div>
+  <div class="xp-tasks">
+    @for (task of shell.openTasks(); track task.id) {
+      <button
+        type="button"
+        class="xp-task-button"
+        [class.is-active]="task.active"
+        [attr.aria-pressed]="task.active"
+        (click)="shell.activateTask(task.id)"
+      >
+        <img [src]="task.icon" alt="" width="16" height="16" />
+        <span>{{ task.label }}</span>
+      </button>
+    }
+  </div>
+  <div class="xp-tray">
+    <img src="icons/tray.svg" alt="" width="16" height="16" />
+    <time [attr.datetime]="shell.isoTime()" [title]="shell.dateLabel()">{{ shell.timeLabel() }}</time>
+  </div>
+  <button
+    type="button"
+    class="xp-show-desktop"
+    aria-label="Mostrar el escritorio"
+    title="Mostrar el escritorio"
+    (click)="shell.showDesktop()"
+  ></button>
+</footer>

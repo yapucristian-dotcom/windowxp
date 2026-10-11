@@ -1,0 +1,75 @@
+<div class="xp-desktop">
+  <img class="xp-wallpaper" src="backgrounds/luna.svg" alt="" draggable="false" />
+  <div class="xp-desktop-surface" (click)="shell.clearDesktop()"></div>
+
+  <ul class="xp-desktop-icons">
+    @for (icon of icons; track icon.id) {
+      <li>
+        <button
+          type="button"
+          class="xp-desktop-icon"
+          [class.is-selected]="shell.selectedIconId() === icon.id"
+          (click)="shell.openFromDesktop(icon.id)"
+        >
+          <img [src]="icon.icon" alt="" width="32" height="32" draggable="false" />
+          <span>{{ icon.label }}</span>
+        </button>
+      </li>
+    }
+  </ul>
+
+  @if (auth.authenticated()) {
+    @for (task of shell.visibleWindows(); track task.id) {
+      <app-xp-window
+        [title]="shell.windowTitle(task)"
+        [icon]="task.icon"
+        [active]="task.active"
+        [maximized]="task.maximized"
+        [x]="task.x"
+        [y]="task.y"
+        [width]="task.width"
+        [height]="task.height"
+        [zIndex]="task.zIndex"
+        (activated)="shell.focusWindow(task.id)"
+        (minimized)="shell.minimizeWindow(task.id)"
+        (maximizeToggled)="shell.toggleMaximize(task.id)"
+        (closed)="shell.closeWindow(task.id)"
+        (frameChanged)="shell.resizeWindow(task.id, $event)"
+        (moved)="shell.moveWindow(task.id, $event)"
+
+      >
+        <app-admin-layout [title]="shell.windowTitle(task)" [taskId]="task.id" [interactive]="task.active" />
+        <div xpWindowFooter class="xp-window-status">{{ shell.windowTitle(task) }}</div>
+      </app-xp-window>
+    }
+
+    @if (!shell.activeVisible()) {
+      <div hidden>
+        <router-outlet />
+      </div>
+    }
+  } @else {
+    <router-outlet />
+  }
+
+  @if (shell.startMenuOpen()) {
+    <div class="xp-start-backdrop" (click)="shell.closeStartMenu()"></div>
+    <app-start-menu />
+  }
+
+  <app-taskbar />
+  <app-xp-notification-host />
+
+  @if (dialogs.current(); as dialog) {
+    <div class="xp-dialog-layer">
+      <app-xp-dialog
+        [title]="dialog.title"
+        [message]="dialog.message"
+        [confirmLabel]="dialog.confirmLabel"
+        [cancelLabel]="dialog.cancelLabel"
+        (confirmed)="dialogs.accept()"
+        (cancelled)="dialogs.dismiss()"
+      />
+    </div>
+  }
+</div>

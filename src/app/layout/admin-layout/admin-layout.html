@@ -1,0 +1,46 @@
+<div class="xp-workspace">
+  <div class="xp-menubar" role="menubar">
+    @for (menu of menus; track menu.id) {
+      <div class="xp-menu">
+        <button
+          type="button"
+          class="xp-menu-title"
+          role="menuitem"
+          [class.is-open]="openMenu() === menu.id"
+          [attr.aria-expanded]="openMenu() === menu.id"
+          (click)="toggleMenu(menu.id, $event)"
+          (mouseenter)="hoverMenu(menu.id)"
+        >
+          {{ menu.label }}
+        </button>
+        @if (openMenu() === menu.id) {
+          <div class="xp-menu-panel" role="menu" (click)="$event.stopPropagation()">
+            @for (item of menu.items; track item.id) {
+              <button type="button" role="menuitem" [disabled]="item.disabled" (click)="run(item.id, $event)">
+                {{ item.label }}
+              </button>
+            }
+          </div>
+        }
+      </div>
+    }
+  </div>
+  <div class="xp-workspace-body">
+    <app-sidebar />
+    <div class="xp-workspace-main">
+      <app-topbar [title]="title()" />
+      <div class="xp-workspace-content">
+        @if (interactive()) {
+          <router-outlet />
+        } @else {
+          <div class="xp-section">
+            <fieldset>
+              <legend>{{ title() }}</legend>
+              <p>Esta ventana está en segundo plano.</p>
+            </fieldset>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>

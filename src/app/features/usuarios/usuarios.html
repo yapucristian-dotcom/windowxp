@@ -1,0 +1,58 @@
+<div class="xp-section">
+  <div class="xp-filters">
+    <label class="xp-field">
+      Buscar
+      <input type="search" [formControl]="search" />
+    </label>
+    <app-xp-button routerLink="/app/usuarios/nuevo">Nuevo usuario</app-xp-button>
+  </div>
+
+  @if (busy()) {
+    <app-xp-loading />
+  }
+
+  <app-xp-table>
+    <table class="xp-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Usuario</th>
+          <th>Nombre</th>
+          <th>Email</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (usuario of pageItems(); track usuario.id) {
+          <tr [class.is-selected]="selectedId() === usuario.id" (click)="selectedId.set(usuario.id)">
+            <td>{{ usuario.id }}</td>
+            <td>{{ usuario.usuario }}</td>
+            <td>{{ usuario.nombre }}</td>
+            <td>{{ usuario.email }}</td>
+            <td [class.xp-state-off]="!usuario.activo">{{ usuario.activo ? 'Activo' : 'Inactivo' }}</td>
+            <td>
+              <div class="xp-actions">
+                <app-xp-button [compact]="true" [disabled]="busy()" (click)="edit(usuario)">Editar</app-xp-button>
+                <app-xp-button [compact]="true" [disabled]="busy()" (click)="toggle(usuario)">
+                  {{ usuario.activo ? 'Desactivar' : 'Activar' }}
+                </app-xp-button>
+                <app-xp-button [compact]="true" [disabled]="busy()" (click)="remove(usuario)">Eliminar</app-xp-button>
+              </div>
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="6">Ningún usuario coincide con la búsqueda.</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </app-xp-table>
+
+  <div class="xp-pager">
+    <app-xp-button [disabled]="currentPage() === 0" (click)="previous()">Anterior</app-xp-button>
+    <span>Página {{ currentPage() + 1 }} de {{ pageCount() }} · {{ rangeLabel() }}</span>
+    <app-xp-button [disabled]="currentPage() >= pageCount() - 1" (click)="next()">Siguiente</app-xp-button>
+  </div>
+</div>

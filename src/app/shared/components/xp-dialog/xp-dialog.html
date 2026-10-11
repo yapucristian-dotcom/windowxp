@@ -1,0 +1,20 @@
+<section class="xp-dialog" role="dialog" aria-modal="true" [attr.aria-label]="title()" (click)="stop($event)">
+  <header class="title-bar">
+    <span class="title-bar-text">{{ title() }}</span>
+    <button type="button" class="xp-caption-close" aria-label="Cerrar" (click)="cancelled.emit()">
+      <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true">
+        <path d="M2 2.2 9.8 10M9.8 2.2 2 10" stroke="currentColor" stroke-width="1.6" />
+      </svg>
+    </button>
+  </header>
+  <div class="xp-dialog-body">
+    <div class="xp-dialog-message">
+      <span class="xp-dialog-mark" aria-hidden="true">?</span>
+      <p>{{ message() }}</p>
+    </div>
+    <div class="xp-dialog-actions">
+      <app-xp-button [isDefault]="true" (click)="confirmed.emit()">{{ confirmLabel() }}</app-xp-button>
+      <app-xp-button (click)="cancelled.emit()">{{ cancelLabel() }}</app-xp-button>
+    </div>
+  </div>
+</section>

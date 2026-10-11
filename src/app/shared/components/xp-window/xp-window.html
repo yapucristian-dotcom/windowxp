@@ -1,0 +1,70 @@
+<section class="xp-window" [class.is-active]="active()" [attr.aria-label]="title()">
+  <header
+    class="title-bar"
+    [class.inactive]="!active()"
+    (pointerdown)="onTitlePointerDown($event)"
+    (pointermove)="onTitlePointerMove($event)"
+    (pointerup)="onTitlePointerUp($event)"
+    (pointercancel)="onTitlePointerUp($event)"
+    (dblclick)="onTitleDoubleClick($event)"
+  >
+    @if (icon()) {
+      <img class="xp-window-icon" [src]="icon()" alt="" width="16" height="16" draggable="false" />
+    }
+    <span class="title-bar-text">{{ title() }}</span>
+    <div class="xp-caption-buttons">
+      @if (minimizable()) {
+        <button type="button" class="xp-caption-button" aria-label="Minimizar" (click)="onMinimize($event)">
+          <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true">
+            <path d="M2 8.2h8v1.6H2z" fill="currentColor" />
+          </svg>
+        </button>
+      }
+      @if (maximizable()) {
+        <button
+          type="button"
+          class="xp-caption-button"
+          [attr.aria-label]="maximized() ? 'Restaurar' : 'Maximizar'"
+          (click)="onMaximize($event)"
+        >
+          @if (maximized()) {
+            <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true">
+              <rect x="3.4" y="1.4" width="6.4" height="6.4" fill="none" stroke="currentColor" stroke-width="1.2" />
+              <rect x="1.6" y="3.4" width="6.4" height="6.4" fill="#2d78d6" stroke="currentColor" stroke-width="1.2" />
+            </svg>
+          } @else {
+            <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true">
+              <rect x="2" y="2" width="8" height="8" fill="none" stroke="currentColor" stroke-width="1.3" />
+            </svg>
+          }
+        </button>
+      }
+      @if (closable()) {
+        <button type="button" class="xp-caption-button xp-caption-close" aria-label="Cerrar" (click)="onClose($event)">
+          <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true">
+            <path d="M2 2.2 9.8 10M9.8 2.2 2 10" stroke="currentColor" stroke-width="1.6" />
+          </svg>
+        </button>
+      }
+    </div>
+  </header>
+
+  <div class="xp-window-body">
+    <ng-content />
+  </div>
+  <footer class="xp-window-footer">
+    <ng-content select="[xpWindowFooter]" />
+  </footer>
+  @if (!maximized()) {
+    @for (edge of resizeEdges; track edge) {
+      <div
+        class="xp-resize"
+        [class]="'xp-resize xp-resize-' + edge"
+        (pointerdown)="onResizeDown($event, edge)"
+        (pointermove)="onResizeMove($event)"
+        (pointerup)="onResizeUp($event)"
+        (pointercancel)="onResizeUp($event)"
+      ></div>
+    }
+  }
+</section>

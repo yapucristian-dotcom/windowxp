@@ -1,0 +1,38 @@
+@if (!auth.authenticated()) {
+  <section class="xp-logon" role="dialog" aria-labelledby="logon-title">
+    <header class="title-bar">
+      <img src="icons/user.svg" alt="" width="16" height="16" />
+      <span id="logon-title" class="title-bar-text">Inicio de sesión</span>
+    </header>
+    <form class="xp-logon-body" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+      <label class="xp-field">
+        Usuario
+        <input #usuario name="usuario" type="text" formControlName="usuario" autocomplete="username" />
+        @if (invalid('usuario')) {
+          <span class="xp-error">{{ message('usuario') }}</span>
+        }
+      </label>
+      <label class="xp-field">
+        Contraseña
+        <input name="clave" type="password" formControlName="clave" autocomplete="current-password" />
+        @if (invalid('clave')) {
+          <span class="xp-error">{{ message('clave') }}</span>
+        }
+      </label>
+      @if (authError()) {
+        <p class="xp-error">El usuario o la contraseña no son correctos.</p>
+      }
+      <div class="xp-form-actions">
+        @if (submitting()) {
+          <app-xp-loading />
+        }
+        <app-xp-button type="submit" [isDefault]="true" [disabled]="submitting()">Aceptar</app-xp-button>
+      </div>
+      <fieldset>
+        <legend>Cuenta de demostración</legend>
+        <p>Usuario: administrador</p>
+        <p>Contraseña: luna</p>
+      </fieldset>
+    </form>
+  </section>
+}

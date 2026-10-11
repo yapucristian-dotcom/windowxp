@@ -1,0 +1,36 @@
+:host {
+  position: absolute;
+  z-index: 12;
+  top: 46%;
+  left: 50%;
+  display: block;
+  width: min(380px, calc(100% - 24px));
+  transform: translate(-50%, -50%);
+}
+
+.xp-logon {
+  overflow: hidden;
+  border: 3px solid #0831d9;
+  border-radius: 8px 8px 3px 3px;
+  background: var(--xp-panel);
+  box-shadow: 3px 6px 16px rgba(0, 0, 0, 0.4);
+  user-select: text;
+}
+
+.title-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 28px;
+  margin: 0;
+  padding: 3px 8px;
+  border-radius: 4px 4px 0 0;
+}
+
+.xp-logon-body {
+  padding: 14px 14px 12px;
+}
+
+.xp-logon-body fieldset {
+  margin-top: 12px;
+}

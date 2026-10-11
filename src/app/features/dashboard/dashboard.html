@@ -1,0 +1,61 @@
+<div class="xp-dashboard">
+  <fieldset>
+    <legend>Usuarios</legend>
+    <p><strong>Total:</strong> {{ dashboard.resumen().total }}</p>
+    <p><strong>Activos:</strong> {{ dashboard.resumen().activos }}</p>
+    <p><strong>Inactivos:</strong> {{ dashboard.resumen().inactivos }}</p>
+    <div
+      class="xp-progress"
+      role="progressbar"
+      [attr.aria-valuenow]="percent(dashboard.resumen().activos, dashboard.resumen().total)"
+      aria-valuemin="0"
+      aria-valuemax="100"
+    >
+      <span [style.width.%]="percent(dashboard.resumen().activos, dashboard.resumen().total)"></span>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Sistema</legend>
+    <p><strong>Equipo:</strong> Plantilla XP</p>
+    <p><strong>Tema:</strong> Luna</p>
+    <p><strong>Sesión:</strong> {{ auth.sesion()?.nombre }}</p>
+    <p><strong>Hora:</strong> {{ shell.timeLabel() }}</p>
+  </fieldset>
+
+  <fieldset>
+    <legend>Estadísticas</legend>
+    @for (item of dashboard.estadisticas(); track item.etiqueta) {
+      <p>{{ item.etiqueta }}: {{ item.valor }}%</p>
+      <div class="xp-progress" role="progressbar" [attr.aria-valuenow]="item.valor" aria-valuemin="0" aria-valuemax="100">
+        <span [style.width.%]="item.valor"></span>
+      </div>
+    }
+  </fieldset>
+
+  <fieldset>
+    <legend>Accesos rápidos</legend>
+    <p><a routerLink="/app/usuarios">Usuarios</a></p>
+    <p><a routerLink="/app/usuarios/nuevo">Nuevo usuario</a></p>
+    <p><a routerLink="/app/reportes">Reportes</a></p>
+    <p><a routerLink="/app/configuracion">Configuración</a></p>
+  </fieldset>
+
+  <fieldset>
+    <legend>Actividad</legend>
+    <ul class="xp-activity">
+      @for (item of dashboard.actividad(); track item.id) {
+        <li><strong>{{ item.hora }}</strong> {{ item.texto }}</li>
+      }
+    </ul>
+  </fieldset>
+
+  <fieldset>
+    <legend>Avisos</legend>
+    <ul class="xp-activity">
+      @for (item of dashboard.avisos(); track item.id) {
+        <li>{{ item.texto }}</li>
+      }
+    </ul>
+  </fieldset>
+</div>

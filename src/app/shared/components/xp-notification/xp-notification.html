@@ -1,0 +1,12 @@
+<div class="xp-toasts" aria-live="polite">
+  @for (item of notifications.items(); track item.id) {
+    <article class="xp-toast" [class]="'xp-toast is-' + item.type">
+      <span class="xp-toast-mark" aria-hidden="true"></span>
+      <div>
+        <strong>{{ label(item.type) }}</strong>
+        <p>{{ item.message }}</p>
+      </div>
+      <button type="button" aria-label="Cerrar aviso" (click)="notifications.dismiss(item.id)">×</button>
+    </article>
+  }
+</div>

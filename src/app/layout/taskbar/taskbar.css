@@ -1,0 +1,153 @@
+:host {
+  display: block;
+}
+
+.xp-taskbar {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 40;
+  display: flex;
+  align-items: flex-end;
+  height: var(--xp-taskbar-height);
+  padding: 0 2px 0 0;
+  gap: 4px;
+  background: linear-gradient(
+    180deg,
+    #3d95ef 0%,
+    #1a6ad8 7%,
+    #0e57c6 18%,
+    #0d54c4 58%,
+    #1864d2 100%
+  );
+  box-shadow: inset 0 1px 0 #8ec4fb;
+}
+
+.xp-quick-launch {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 2px;
+  height: 22px;
+  margin: 0 2px 4px;
+  padding-right: 6px;
+  border-right: 1px solid rgba(0, 30, 80, 0.35);
+}
+
+.xp-quick-button,
+.xp-show-desktop {
+  min-width: 0;
+  padding: 0;
+  color: #ffffff;
+  text-shadow: none;
+  cursor: default;
+}
+
+.xp-quick-button {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 22px;
+  border: 1px solid transparent;
+  background: transparent;
+  box-shadow: none;
+}
+
+.xp-quick-button:hover {
+  border-color: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.xp-tasks {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 3px;
+  min-width: 0;
+  height: 100%;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.xp-tasks::-webkit-scrollbar {
+  display: none;
+}
+
+.xp-task-button {
+  display: flex;
+  flex: 0 1 150px;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+  max-width: 160px;
+  height: 22px;
+  margin-bottom: 4px;
+  padding: 0 8px;
+  border: 1px solid #0c438f;
+  border-radius: 3px;
+  background: linear-gradient(180deg, #4b9af4 0%, #1d6cd6 9%, #1760c8 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.45),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  font-family: var(--xp-font);
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  text-align: left;
+  text-shadow: 1px 1px 1px rgba(0, 20, 60, 0.55);
+  cursor: default;
+}
+
+.xp-task-button span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.xp-task-button:hover {
+  background: linear-gradient(180deg, #67adf8 0%, #2a78e0 12%, #1b68d2 100%);
+}
+
+.xp-task-button.is-active,
+.xp-task-button:active {
+  border-color: #08356f;
+  background: linear-gradient(180deg, #123f86 0%, #1d5cb8 38%, #3b86e4 100%);
+  box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.45);
+  text-shadow: none;
+}
+
+.xp-tray {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 6px;
+  height: 22px;
+  margin: 0 2px 4px;
+  padding: 0 8px;
+  border-radius: 3px;
+  background: linear-gradient(180deg, #10a0ea 0%, #0c6fd4 45%, #0a5ec4 100%);
+  box-shadow: inset 1px 1px 2px rgba(0, 30, 80, 0.45);
+  color: #ffffff;
+  font-size: 11px;
+  text-shadow: 1px 1px 1px rgba(0, 20, 60, 0.45);
+}
+
+.xp-show-desktop {
+  width: 14px;
+  height: 22px;
+  margin: 0 2px 4px 0;
+  border: 1px solid #08386f;
+  border-radius: 1px;
+  background: linear-gradient(90deg, #8ec4fb 0%, #1664d4 38%, #0a4eae 100%);
+  box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.55);
+}
+
+@media (max-width: 640px) {
+  .xp-task-button {
+    flex-basis: 96px;
+    max-width: 110px;
+    padding: 0 6px;
+  }
+}
