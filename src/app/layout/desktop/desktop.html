@@ -1,6 +1,11 @@
 <div class="xp-desktop">
   <img class="xp-wallpaper" src="backgrounds/luna.svg" alt="" draggable="false" />
-  <div class="xp-desktop-surface" (click)="shell.clearDesktop()"></div>
+  <div
+    class="xp-desktop-surface"
+    tabindex="-1"
+    (click)="shell.clearDesktop()"
+    (keydown.enter)="shell.clearDesktop()"
+  ></div>
 
   <ul class="xp-desktop-icons">
     @for (icon of icons; track icon.id) {
@@ -53,7 +58,12 @@
   }
 
   @if (shell.startMenuOpen()) {
-    <div class="xp-start-backdrop" (click)="shell.closeStartMenu()"></div>
+    <div
+      class="xp-start-backdrop"
+      tabindex="-1"
+      (click)="shell.closeStartMenu()"
+      (keydown.enter)="shell.closeStartMenu()"
+    ></div>
     <app-start-menu />
   }
 
