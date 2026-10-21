@@ -1,4 +1,4 @@
-<footer class="xp-taskbar" (click)="shell.closeStartMenu()">
+<footer class="xp-taskbar" tabindex="-1" (click)="shell.closeStartMenu()" (keydown.enter)="shell.closeStartMenu()">
   <app-start-button />
   <div class="xp-quick-launch">
     @for (item of quickLaunch; track item.id) {

@@ -14,7 +14,13 @@
           {{ menu.label }}
         </button>
         @if (openMenu() === menu.id) {
-          <div class="xp-menu-panel" role="menu" (click)="$event.stopPropagation()">
+          <div
+            class="xp-menu-panel"
+            role="menu"
+            tabindex="-1"
+            (click)="$event.stopPropagation()"
+            (keydown.enter)="$event.stopPropagation()"
+          >
             @for (item of menu.items; track item.id) {
               <button type="button" role="menuitem" [disabled]="item.disabled" (click)="run(item.id, $event)">
                 {{ item.label }}

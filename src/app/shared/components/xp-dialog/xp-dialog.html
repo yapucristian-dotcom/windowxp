@@ -1,4 +1,12 @@
-<section class="xp-dialog" role="dialog" aria-modal="true" [attr.aria-label]="title()" (click)="stop($event)">
+<section
+  class="xp-dialog"
+  role="dialog"
+  aria-modal="true"
+  [attr.aria-label]="title()"
+  tabindex="-1"
+  (click)="stop($event)"
+  (keydown.enter)="$event.stopPropagation()"
+>
   <header class="title-bar">
     <span class="title-bar-text">{{ title() }}</span>
     <button type="button" class="xp-caption-close" aria-label="Cerrar" (click)="cancelled.emit()">
